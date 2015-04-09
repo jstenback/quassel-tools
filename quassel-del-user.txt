@@ -1,0 +1,7 @@
+DELETE FROM backlog USING buffer WHERE backlog.bufferid = buffer.bufferid AND buffer.userid=2;
+DELETE FROM identity WHERE userid=2;
+DELETE FROM ircserver WHERE userid=2;
+DELETE FROM network WHERE userid=2;
+DELETE FROM quasseluser WHERE userid=2;
+DELETE FROM buffer WHERE userid=2;
+VACUUM FULL;

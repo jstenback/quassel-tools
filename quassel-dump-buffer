@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/home/jst/quassel-tools/quassel-dump-buffer.py -u <user> -n <network> -b $*

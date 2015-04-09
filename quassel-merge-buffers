@@ -1,0 +1,19 @@
+#!/bin/bash
+
+FROM=$2
+INTO=$1
+
+if [[ "$FROM" == "" || "$INTO" == "" ]]
+then
+    echo "Usage: $0 <into> <from>"
+
+    exit 1
+fi
+
+echo "Merging from channel $FROM into $INTO."
+
+psql quassel -c "UPDATE backlog SET bufferid=(SELECT bufferid FROM buffer
+                                                     WHERE buffername='$INTO')
+                        FROM buffer WHERE buffer.bufferid = backlog.bufferid AND
+                             buffer.buffername='$FROM';
+                 DELETE FROM buffer WHERE buffername='$FROM'"

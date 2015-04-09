@@ -1,0 +1,4 @@
+#!/bin/sh
+
+psql quassel -c "DELETE FROM backlog USING buffer WHERE backlog.bufferid = buffer.bufferid AND buffer.buffercname LIKE('#%') and time < (SELECT CURRENT_DATE - INTERVAL '30 day');"
+psql quassel -c "VACUUM FULL;"
